@@ -4,7 +4,6 @@ import Link from "next/link";
 import images from "../constants/images";
 import * as styles from "../styles/Navbar.module.css";
 import { HamburgerButton } from "react-hamburger-button";
-import { CloudLightning } from "react-feather";
 const Navbar = () => {
 	const [hidden, setHindden] = React.useState(true);
 	return (
@@ -15,9 +14,8 @@ const Navbar = () => {
 
 				{/* nav-links */}
 				<ul
-					className={`row ${styles.navLinks} ${
-						hidden ? styles.hide : styles.show
-					}`}
+					className={`row ${styles.navLinks} ${hidden ? styles.hide : styles.show
+						}`}
 					onClick={() => {
 						setHindden((current) => !current);
 					}}
@@ -54,7 +52,7 @@ const Navbar = () => {
 					<li className={` text-dark-gray ${styles.navLink}`}>
 						<Link href="/">Find a doctor</Link>
 					</li>
-					
+
 					{/* <li className={` text-dark-gray ${styles.navLink}`}>
 						<Link href="/">History</Link>
 					</li> */}

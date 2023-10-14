@@ -19,7 +19,7 @@ const Hero = () => {
 				</p>
 
 				{/* Button - custom button */}
-				<div classname='flex flex-auto'>
+				<div className='flex flex-auto'>
 
 					<Button fill="fill" text={"Consult Today"} />
 				</div>

@@ -5,6 +5,9 @@ const config = require('./config');
 const mongoose = require('mongoose');
 const app = express();
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('./swagger-output.json'); // Replace with the actual path to your Swagger output file
+
 // middleware
 app.use(bodyParser.json());
 app.use(cors());
@@ -16,6 +19,10 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
 
 // routes
 app.use('/api', require('./routes/index'));
+
+
+// Serve Swagger documentation and UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

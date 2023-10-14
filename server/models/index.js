@@ -55,6 +55,7 @@ const userSchema = new mongoose.Schema({
         //consultant
         consultant: {
             fees: Number,
+            isBusy: Boolean,
         },
         //admin
         admin: {
@@ -87,7 +88,30 @@ const appointmentSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Patient
     doctor: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Doctor
     appointmentDate: Date,
-    serialNumber: Number
+    serialNumber: Number,
+    appointmentType: {
+        type: String,
+        enum: ['newPatient', 'followUp'],
+        default: 'newPatient',
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'confirmed', 'completed', 'cancelled'],
+        default: 'pending',
+    },
+    payment: {
+        amount: Number,
+        paymentMethod: String,
+        paymentDate: Date,
+    },
+    emergency: Boolean,
+    reasonOfEmergency: {
+        type: String,
+        enum: ['accident', 'heartAttack', 'stroke', 'others'],
+        default: 'others',
+    },
+    feeForEmergency: Number,
+
 }, { timestamps: true });
 
 // Electronic Health Record (EHR) Schema
@@ -146,6 +170,26 @@ const subscriptionSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
+const messageSchema = new mongoose.Schema({
+    messages: [{
+        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        message: String,
+        createdAt: Date,
+    }],
+    creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    status: {
+        type: String,
+        enum: ['resolved', 'unresolved'],
+        default: 'unresolved',
+    },
+}, { timestamps: true });
+
+
+const notificationSchema = new mongoose.Schema({
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    notification: String,
+    read: Boolean,
+}, { timestamps: true });
 
 
 
@@ -158,6 +202,8 @@ const HealthBlog = mongoose.model('HealthBlog', healthBlogSchema);
 const Review = mongoose.model('Review', reviewsSchema);
 const Disease = mongoose.model('Disease', diseaseSchema);
 const Subscription = mongoose.model('Subscription', subscriptionSchema);
+const Notification = mongoose.model('Notification', notificationSchema);
+const Message = mongoose.model('Message', messageSchema);
 
 
 module.exports = {
@@ -168,5 +214,7 @@ module.exports = {
     HealthBlog,
     Review,
     Disease,
-    Subscription
+    Subscription,
+    Notification,
+    Message
 };

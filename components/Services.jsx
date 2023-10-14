@@ -9,13 +9,13 @@ const Services = ({ services }) => {
 		<section className={styles.container}>
 			<div className="margin-on-side">
 				{/* Section Heading */}
-				<SectionHeading headingTitle="Our Services" />
+				<SectionHeading className="text-3xl" headingTitle="Our Services" />
 				{/* Section Description */}
-				<p className={`${styles.servicesDes} text-light-gray`}>
-					We provide to you the best choiches for you. Adjust it to
-					your health needs and make sure your undergo treatment with
-					our highly qualified doctors you can consult with us which
-					type of service is suitable for your health
+				<p className={`${styles.servicesDes} text-gray`}>
+					Find and connect with top doctors, schedule consultations, and 
+					access emergency care when you need it most. Store and manage 
+					your medical history, inquire about syndromes, and even hire a personal 
+					consultant for personalized health guidance. Your health, simplified.
 				</p>
 				{/* Section List - we will map through array and render a card for each item */}
 				<div className={`row ${styles.serviceList}`}>

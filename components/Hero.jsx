@@ -10,7 +10,8 @@ const Hero = () => {
       {/* left section */}
       <div className={`${styles.heroInfo}`}>
         {/* heading */}
-        <h1 className={styles.heroHeading}>Virtual healthcare for you</h1>
+		<div className="flex flex-col h-full mt-4">
+        <h1 className={styles.heroHeading}>Proper healthcare for you</h1>
         {/* details */}
         <p className={`${styles.heroDes} text-light-gray`}>
           Connect with Trusted Medical Experts, Access Personalized
@@ -19,7 +20,8 @@ const Hero = () => {
 
         {/* Button - custom button */}
 
-        <Button fill='fill' text={"Consult Today"} />
+        <Button fill='fill' text={"Consult Now"} />
+		</div>
       </div>
 
       {/* right section */}

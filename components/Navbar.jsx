@@ -8,7 +8,7 @@ import { CloudLightning } from "react-feather";
 const Navbar = () => {
 	const [hidden, setHindden] = React.useState(true);
 	return (
-		<nav>
+		<nav className="border-b-2">
 			<div className={` margin-on-side row ${styles.navContainer}`}>
 				{/* logo */}
 				<h1 className="text-5xl font-bold text-[#FF4A4A]">HealthCare</h1>
@@ -59,7 +59,7 @@ const Navbar = () => {
 						<Link href="/">History</Link>
 					</li> */}
 					<li className={` text-dark-gray ${styles.navLink}`}>
-						<Link href="/">Signin</Link>
+						<Link href="/">SignIn</Link>
 					</li>
 				</ul>
 				<div className={`${styles.navMenuButton}`}>
@@ -77,6 +77,7 @@ const Navbar = () => {
 					/>
 				</div>
 			</div>
+		
 		</nav>
 	);
 };

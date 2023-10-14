@@ -1,12 +1,10 @@
 .footerContainer {
-  background: linear-gradient(
-    183.41deg,
-    rgb(255, 77, 77) -8.57%,
-    #f83030 82.96%
-  );
-  margin-top: 5rem;
-  padding: 5rem 0;
-  color: #fff;
+  background: rgba(255, 74, 74,0.8);
+  margin-top: 3rem;
+  padding: 2rem 0;
+  
+  
+  /* color: #fff; */
 }
 .footerItemsRow {
   display: flex;

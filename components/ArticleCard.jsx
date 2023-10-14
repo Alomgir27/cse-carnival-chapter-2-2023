@@ -6,16 +6,16 @@ const ArticleCard = ({ data }) => {
 	return (
 		<div className={styles.cardContainer}>
 			{/* Image */}
-			<div className={styles.imageContainer}>
+			{/* <div className={styles.imageContainer}>
 				<Image src={data.picture} alt="Health is Wealth" />
-			</div>
+			</div> */}
 			{/* Info */}
 			<div className={`${styles.infoContainer}`}>
 				<h3 className={`${styles.articleHeading}`}>{data.title}</h3>
-				<p className={`${styles.articleText} text-light-gray`}>
+				<p className={`${styles.articleText} text-gray`}>
 					{data.description}
 				</p>
-				<Link href="/">Learn More</Link>
+				<Link href="/">See More</Link>
 			</div>
 		</div>
 	);

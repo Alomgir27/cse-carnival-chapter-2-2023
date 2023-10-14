@@ -3,8 +3,8 @@ import * as styles from "../styles/Footer.module.css";
 import FooterLinkSet from "./FooterLinkSet";
 const Footer = () => {
   return (
-    <footer className={styles.footerContainer}>
-      <div className={`margin-on-side ${styles.footerItemsRow}`}>
+    <footer className={`${styles.footerContainer} mx-20 rounded-t-md`}>
+      <div className={`margin-on-side flex justify-between `} >
         {/* Company Info */}
         <div className={`${styles.companyInfo}`}>
           <div className={styles.branding}>
@@ -21,6 +21,7 @@ const Footer = () => {
         {/* Link Set 1 */}
         <FooterLinkSet />
       </div>
+      
     </footer>
   );
 };

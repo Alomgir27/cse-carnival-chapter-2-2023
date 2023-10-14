@@ -1,6 +1,6 @@
 .cardContainer {
   align-self: stretch;
-  background-color: #ffffff;
+	background-color: rgba(255, 74, 74,0.2);
   box-shadow: 4px 15px 20px 11px #e5e9f666;
   max-width: 30%;
   margin-bottom: 30px;
@@ -9,13 +9,11 @@
   flex-direction: column;
   align-items: flex-start;
   overflow: hidden;
+  
+	transition: all 0.2s ease;
 }
-.imageContainer img {
-  transition: all 0.3s ease;
-  width: 100%;
-}
-.cardContainer:hover .imageContainer img {
-  transform: scale(1.1);
+.cardContainer:hover {
+  transform: scale(1.02);
 }
 .infoContainer {
   flex: 1;
@@ -35,8 +33,8 @@
   line-height: 1.5rem;
 }
 .infoContainer a {
-  text-decoration: none;
-  color: #ff4a4a;
+  text-decoration: bold;
+  color: #fa2e2e;
   margin-top: auto;
   justify-self: flex-end;
 }

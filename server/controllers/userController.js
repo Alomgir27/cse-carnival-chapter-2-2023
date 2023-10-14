@@ -131,10 +131,24 @@ const getUser = async (req, res) => {
 
 const createUser = async (req, res) => {
     const { body } = req;
-
+    console.log(body);
     try {
         const password = await bcrypt.hash(body.password, 10);
-        const user = await User.create({ ...body, password });
+        const username = body.username;
+        const email = body.email;
+        const role = body.role;
+        const contact = body.contact;
+        const profile = body.profile;
+
+        const user = await User.create({
+            username,
+            password,
+            email,
+            role,
+            contact,
+            profile,
+        });
+
 
         if (user) {
             const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });

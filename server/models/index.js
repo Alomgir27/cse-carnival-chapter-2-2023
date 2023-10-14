@@ -11,7 +11,11 @@ const userSchema = new mongoose.Schema({
         address: [mongoose.Schema.Types.Mixed], // Store multiple addresses as needed
         phoneNumber: String,
     },
-    email: String,
+    email: {
+        type: String,
+        unique: true,
+    },
+    imageUri: String,
     biometricData: {
         fingerprint: String,
         faceRecognition: String,
@@ -28,14 +32,14 @@ const userSchema = new mongoose.Schema({
         //doctor
         doctor: {
             specializations: [String],
-            certifications: [String],
-            availability: [{
-                day: String,
+            certifications: String,
+            availability: {
+                day: [String], //['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
                 time: {
                     start: String,
                     end: String,
                 }
-            }],
+            },
             newPatientFee: Number,
             followUpFee: Number,
             rating: Number,
@@ -56,11 +60,7 @@ const userSchema = new mongoose.Schema({
         consultant: {
             fees: Number,
             isBusy: Boolean,
-        },
-        //admin
-        admin: {
-
-        },
+        }
     },
     role: {
         type: String,

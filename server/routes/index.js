@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+const multer = require('multer');
+
+
 // Require middleware
 const validateToken = require('../middleware/validateToken');
 
@@ -15,13 +18,35 @@ const diseaseController = require('../controllers/diseaseController');
 const subscriptionController = require('../controllers/subscriptionController');
 const notificationController = require('../controllers/notificationController');
 
+// Multer storage
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './uploads/images');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+
+const uploadImage = multer({ storage: storage });
+
+// Upload image
+router.post('/upload', uploadImage.single('file'), (req, res) => {
+    let imageUri = req.file.path.replace(/\\/g, '/');
+    res.status(200).json({
+        success: true,
+        data: imageUri,
+        message: 'Successfully uploaded image'
+    });
+});
 
 
 // User routes
 router.get('/users', validateToken, userController.getAllUsers);
 router.get('/users/:id', validateToken, userController.getUser);
-router.post('/users/create', userController.createUser);
 router.post('/users/login', userController.loginUser);
+router.post('/users/create', userController.createUser);
 router.put('/users/:id', validateToken, userController.updateUser);
 router.delete('/users/:id', validateToken, userController.deleteUser);
 

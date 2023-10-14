@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import images from "../constants/images";
 import * as styles from "../styles/Navbar.module.css";
 import { HamburgerButton } from "react-hamburger-button";
+
 
 const Navbar = ({ active = -1 }) => {
   const [hidden, setHindden] = React.useState(true);
@@ -69,8 +70,24 @@ const Navbar = ({ active = -1 }) => {
 						<Link href="/">History</Link>
 					</li> */}
           <li className={` text-dark-gray ${styles.navLink}`}>
-            <Link href='/'>SignIn</Link>
-          </li>
+						<Link href="/"> About Us</Link>
+					</li>
+					{token ? (
+						<li className={` text-dark-gray ${styles.navLink}`}>
+							<button
+								onClick={() => {
+									localStorage.removeItem("token");
+									window.location.reload();
+								}}
+							>
+								Logout
+							</button>
+						</li>
+					) : (
+						<li className={` text-dark-gray ${styles.navLink}`}>
+							<Link href="/signIn">Login</Link>
+						</li>
+					)}
         </ul>
         <div className={`${styles.navMenuButton}`}>
           <HamburgerButton
@@ -89,6 +106,7 @@ const Navbar = ({ active = -1 }) => {
       </div>
     </nav>
   );
+
 };
 
 export default Navbar;

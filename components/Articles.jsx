@@ -6,7 +6,7 @@ import Button from "./Button";
 const Articles = ({ articles }) => {
 	return (
 		<section className={"margin-on-side"}>
-			<SectionHeading headingTitle={"Check out our latest Articles"} />
+			<SectionHeading headingTitle={"Check out our latest Health Blogs and Tips"} />
 			<div className={`row aside`} style={{ margin: "3rem 0" }}>
 				{articles.map((item) => {
 					return <ArticleCard key={item.id} data={item} />;

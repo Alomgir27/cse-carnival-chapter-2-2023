@@ -11,7 +11,8 @@ const Navbar = () => {
 		<nav>
 			<div className={` margin-on-side row ${styles.navContainer}`}>
 				{/* logo */}
-				<Image src={images.logo} alt="Health is Wealth" />
+				<h1 className="text-5xl font-bold text-[#FF4A4A]">HealthCare</h1>
+
 				{/* nav-links */}
 				<ul
 					className={`row ${styles.navLinks} ${
@@ -48,16 +49,17 @@ const Navbar = () => {
 						<Link href="/">Home</Link>
 					</li>
 					<li className={` text-dark-gray ${styles.navLink}`}>
+						<Link href="/">Contact Consultant</Link>
+					</li>
+					<li className={` text-dark-gray ${styles.navLink}`}>
 						<Link href="/">Find a doctor</Link>
 					</li>
+					
+					{/* <li className={` text-dark-gray ${styles.navLink}`}>
+						<Link href="/">History</Link>
+					</li> */}
 					<li className={` text-dark-gray ${styles.navLink}`}>
-						<Link href="/">Apps</Link>
-					</li>
-					<li className={` text-dark-gray ${styles.navLink}`}>
-						<Link href="/">Testimonials</Link>
-					</li>
-					<li className={` text-dark-gray ${styles.navLink}`}>
-						<Link href="/">About us</Link>
+						<Link href="/">Signin</Link>
 					</li>
 				</ul>
 				<div className={`${styles.navMenuButton}`}>

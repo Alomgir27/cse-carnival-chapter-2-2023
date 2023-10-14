@@ -2,7 +2,7 @@
 const logo = require("../public/assets/images/logo.png");
 
 // hero image
-const heroImage = require("../public/assets/images/hero.svg");
+const heroImage = require("../public/assets/images/hero.jpg");
 
 // dot pattern
 const dots = require("../public/assets/images/dot-pat.svg");

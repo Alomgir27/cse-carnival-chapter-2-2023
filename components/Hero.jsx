@@ -15,12 +15,14 @@ const Hero = () => {
 				</h1>
 				{/* details */}
 				<p className={`${styles.heroDes} text-light-gray`}>
-					bhjdbvfalgar provides progressive, and affordable
-					healthcare, accessible on mobile and online for everyone
+					Connect with Trusted Medical Experts, Access Personalized Consultations, and Manage Your Wellness Effortlessly
 				</p>
 
 				{/* Button - custom button */}
-				<Button fill="fill" text={"Consult Today"} />
+				<div classname='flex flex-auto'>
+
+					<Button fill="fill" text={"Consult Today"} />
+				</div>
 			</div>
 
 			{/* right section */}

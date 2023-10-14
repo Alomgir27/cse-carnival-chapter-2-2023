@@ -11,7 +11,9 @@ const Hero = () => {
 			<div className={`${styles.heroInfo}`}>
 				{/* heading */}
 				<div className="flex flex-col h-full mt-4">
-					<h1 className={styles.heroHeading}>Proper healthcare for you</h1>
+					<h1 className="text-4xl font-bold text-gray-700">
+						Health is Wealth
+					</h1>
 					{/* details */}
 					<p className={`${styles.heroDes} text-light-gray`}>
 						Connect with Trusted Medical Experts, Access Personalized

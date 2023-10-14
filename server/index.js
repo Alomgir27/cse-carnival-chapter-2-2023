@@ -29,6 +29,24 @@ app.get('/', (req, res) => {
 });
 
 
+//access control
+app.use((req, res, next) => {
+    //allow access from any origin
+    res.header('Access-Control-Allow-Origin', '*');
+    //set headers to allow request methods
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    //set request methods to be allowed
+    if (req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+        //return response with status 200
+        return res.status(200).json({});
+    }
+    //forward request to route handler
+    next();
+});
+
+
+
 
 
 // start server

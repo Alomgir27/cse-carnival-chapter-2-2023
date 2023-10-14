@@ -9,8 +9,8 @@ const ServiceCard = ({ service }) => {
 					<Image src={service.picture} alt="Health is Wealth" />
 				</div>
 			</div>
-			<h3 className={`${styles.cardHeading}`}>{service.title}</h3>
-			<p className={`${styles.cardDes} text-light-gray`}>
+			<h2 className={`${styles.cardHeading}`}>{service.title}</h2>
+			<p className={`${styles.cardDes} text-gray`}>
 				{service.description}
 			</p>
 		</div>

@@ -15,6 +15,8 @@ const consultation = require("../public/assets/images/consult.svg");
 const detailsInfo = require("../public/assets/images/details-info.svg");
 const emergancyCare = require("../public/assets/images/eme-care.svg");
 const tracking = require("../public/assets/images/tracking.svg");
+const query = require("../public/assets/images/query.svg");
+const personalConsultant = require("../public/assets/images/personal-consultant.svg");
 
 // advantages
 const leadingHealthProvider = require("../public/assets/images/leading-health.svg");
@@ -29,20 +31,22 @@ const article2 = require("../public/assets/images/article-2.png");
 const article3 = require("../public/assets/images/article-3.png");
 
 export default {
-	logo,
-	heroImage,
-	dots,
-	backOval,
-	searchDoctor,
-	onlinePharamacy,
-	consultation,
-	detailsInfo,
-	emergancyCare,
-	tracking,
-	leadingHealthProvider,
-	downloadApp,
-	article1,
-	article2,
-	article3,
-	testinomialAvatar,
+  logo,
+  heroImage,
+  dots,
+  backOval,
+  searchDoctor,
+  onlinePharamacy,
+  consultation,
+  detailsInfo,
+  emergancyCare,
+  tracking,
+  query,
+  personalConsultant,
+  leadingHealthProvider,
+  downloadApp,
+  article1,
+  article2,
+  article3,
+  testinomialAvatar,
 };

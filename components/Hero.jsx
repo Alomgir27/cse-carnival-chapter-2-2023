@@ -10,24 +10,23 @@ const Hero = () => {
 			{/* left section */}
 			<div className={`${styles.heroInfo}`}>
 				{/* heading */}
-				<h1 className={styles.heroHeading}>
-					Virtual healthcare for you
-				</h1>
-				{/* details */}
-				<p className={`${styles.heroDes} text-light-gray`}>
-					Connect with Trusted Medical Experts, Access Personalized Consultations, and Manage Your Wellness Effortlessly
-				</p>
+				<div className="flex flex-col h-full mt-4">
+					<h1 className={styles.heroHeading}>Proper healthcare for you</h1>
+					{/* details */}
+					<p className={`${styles.heroDes} text-light-gray`}>
+						Connect with Trusted Medical Experts, Access Personalized
+						Consultations, and Manage Your Wellness Effortlessly
+					</p>
 
-				{/* Button - custom button */}
-				<div className='flex flex-auto'>
+					{/* Button - custom button */}
 
-					<Button fill="fill" text={"Consult Today"} />
+					<Button fill='fill' text={"Consult Now"} />
 				</div>
 			</div>
 
 			{/* right section */}
 			<div className={`${styles.heroImageContainer}`}>
-				<Image src={images.heroImage} alt="Health is Wealth" />
+				<Image src={images.heroImage} alt='Health is Wealth' />
 			</div>
 		</section>
 	);

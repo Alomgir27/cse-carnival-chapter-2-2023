@@ -5,28 +5,32 @@ import Navbar from "../components/Navbar";
 import Services from "../components/Services";
 import data from "../constants/data";
 import Head from "next/head";
-
+import Sidebar from '../components/Sidebar';
 
 export default function Home() {
     return (
         <div>
             <Head>
-                <title>A HealthCare Website</title>
-                <meta
-                    name="viewport"
-                    content="initial-scale=1.0, width=device-width"
-                />
-                <link rel="shortcut icon" href="/public/favicon.ico" />
+                <title>HealthCare - You health Partner</title>
+                <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+                <link rel='shortcut icon' href='/public/favicon.ico' />
             </Head>
             <Navbar />
-            <Hero />
+            <div className="grid grid-cols-15 ">
+                <div className="col-span-1">
+                    <Sidebar services={data.services} />
+                </div>
+                <div className="col-span-14">
+                    <Hero />
+
+                    <Services services={data.services} />
+
+                    <Articles articles={data.articles} />
 
 
-            <Services services={data.services} />
-
-            <Articles articles={data.articles} />
-
-            <Footer />
+                    <Footer />
+                </div>
+            </div>
         </div>
     );
 }

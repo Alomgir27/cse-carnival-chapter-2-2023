@@ -5,7 +5,7 @@ const multer = require('multer');
 
 
 // Require middleware
-const validateToken = require('../middleware/validateToken');
+// const validateToken = require('../middleware/validateToken');
 
 // Require controllers
 const userController = require('../controllers/userController');
@@ -43,12 +43,12 @@ router.post('/upload', uploadImage.single('file'), (req, res) => {
 
 
 // User routes
-router.get('/users', validateToken, userController.getAllUsers);
-router.get('/users/:id', validateToken, userController.getUser);
+router.get('/users', userController.getAllUsers);
+router.get('/users/:id', userController.getUser);
 router.post('/users/login', userController.loginUser);
 router.post('/users/create', userController.createUser);
-router.put('/users/:id', validateToken, userController.updateUser);
-router.delete('/users/:id', validateToken, userController.deleteUser);
+router.put('/users/:id', userController.updateUser);
+router.delete('/users/:id', userController.deleteUser);
 
 
 // Review routes

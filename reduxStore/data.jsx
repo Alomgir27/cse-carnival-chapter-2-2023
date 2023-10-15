@@ -1,17 +1,17 @@
+import axios from "axios"
+
 const inititialState = {
-    data: new Date()
+    users: [],
 }
 
-const dateReducer = (state = inititialState, action) => {
+export default function reducer(state = inititialState, action) {
     switch (action.type) {
-        case 'UPDATE_DATE':
-            return {
-                ...state,
-                data: action.payload
-            }
+        case "SET_USERS":
+            return { ...state, users: action.payload }
         default:
             return state
     }
 }
 
-export default dateReducer
+
+

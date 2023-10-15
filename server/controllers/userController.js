@@ -84,6 +84,7 @@ const { Review } = require('../models/index');
 //@ROUTE: GET /api/users
 //@DESC: Get all users
 //@ACCESS: Public
+
 const getAllUsers = async (req, res) => {
     try {
         const users = await User.find();
@@ -139,6 +140,7 @@ const createUser = async (req, res) => {
         const role = body.role;
         const contact = body.contact;
         const profile = body.profile;
+        const imageUri = body.imageUri;
 
         const user = await User.create({
             username,
@@ -147,6 +149,7 @@ const createUser = async (req, res) => {
             role,
             contact,
             profile,
+            imageUri
         });
 
 
@@ -269,6 +272,9 @@ const deleteUser = async (req, res) => {
         });
     }
 }
+
+
+
 
 
 

@@ -115,6 +115,7 @@ import axios from "axios";
 import moment from "moment";
 
 
+
 const DoctorDashboard = () => {
     const router = useRouter();
     const [hidden, setHindden] = useState(true);
@@ -122,6 +123,32 @@ const DoctorDashboard = () => {
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem("user")));
     }, []);
+
+    const [appointments, setAppointments] = useState([]);
+
+    const [search, setSearch] = useState('');
+    const [triggerFunction, setTriggerFunction] = useState(null);
+    const [ignores, setIgnores] = useState([]);
+    const [selectId, setSelectId] = useState(null);
+
+    const confirnToDb = () => {
+        console.log("confirm in db");
+
+    }
+
+    useEffect(() => {
+        (async () => {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/appointments`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
+            console.log(res.data.data);
+            setAppointments(res.data.data);
+        })();
+    }, []);
+
 
     return (
         <div className="bg-gray-100 min-h-screen pb-8 flex flex-col">
@@ -173,8 +200,17 @@ const DoctorDashboard = () => {
                 {/* Appointments Section */}
                 <div className="bg-white p-4 mt-4 rounded shadow-md">
                     <h2 className="text-xl font-semibold mb-2">Appointments</h2>
-                    <p className="text-gray-600">You have 3 appointments today.</p>
+                    <p className="text-gray-600">You have {appointments?.length} appointments today</p>
                     {/* isEmergency */}
+                    {/* {appointments?.slice(0, 3)?.map((appointment, index) => (
+                        <div className="flex justify-between items-center border-b-2 py-4" key={index}>
+                            <div className="flex flex-col">
+                                <p className="text-lg font-semibold">Dr. John Doe</p>
+                                <p className="text-gray-600">{appointment?.doctor?.profile?.doctor?.specializations}</p>
+                            </div>
+                            <p className="text-gray-600">{moment('2021-10-10T10:00:00.000Z').format("hh:mm A")}</p>
+                        </div>
+                    ))} */}
 
                     {/* Replace with dynamic data from your backend */}
                     <div className="flex flex-col space-y-4 mt-4">
@@ -200,13 +236,13 @@ const DoctorDashboard = () => {
                             <p className="text-gray-600">10:00 AM</p>
                         </div>
                         <div className="flex justify-end">
-                            <a href="#" className="text-red-500">View All</a>
+                            <a href="/appointmentlist" className="text-red-500">View All</a>
                         </div>
 
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 

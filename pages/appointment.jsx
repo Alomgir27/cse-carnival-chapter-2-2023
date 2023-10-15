@@ -1,27 +1,45 @@
 import { useState } from "react";
 
-const Appointment = () => {
-    const [cardNumber, setCardNumber] = useState("");
-    const [expirationDate, setExpirationDate] = useState("");
-    const [cvv, setCvv] = useState("");
-    const [cardHolder, setCardHolder] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const paymentInfo = {
-            cardNumber,
-            expirationDate,
-            cvv,
-            cardHolder,
-        };
-        console.log(paymentInfo);
-    };
+// const appointmentSchema = new mongoose.Schema({
+//     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Patient
+//     doctor: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Doctor
+//     appointmentDate: Date,
+//     serialNumber: Number,
+//     appointmentType: {
+//         type: String,
+//         enum: ['newPatient', 'followUp'],
+//         default: 'newPatient',
+//     },
+//     status: {
+//         type: String,
+//         enum: ['pending', 'confirmed', 'completed', 'cancelled'],
+//         default: 'pending',
+//     },
+//     payment: {
+//         amount: Number,
+//         paymentMethod: String,
+//         paymentDate: Date,
+//     },
+//     emergency: Boolean,
+//     reasonOfEmergency: {
+//         type: String,
+//         enum: ['accident', 'heartAttack', 'stroke', 'others'],
+//         default: 'others',
+//     },
+//     feeForEmergency: Number,
+
+// }, { timestamps: true });
+const Appointment = () => {
+    const [doctorId, setDoctorId] = useState(null);
+    const [appointmentDate, setAppointmentDate] = useState(null);
+
 
     return (
         <div className='w-full max-w-lg mx-auto p-8'>
             <div className='bg-white rounded-lg shadow-lg p-6'>
                 <h2 className='text-lg font-medium mb-6'>Appointment Form</h2>
-                <form onSubmit={handleSubmit}>
+                <form >
                     <div className='grid grid-cols-2 gap-6'>
                         <div className='col-span-2 sm:col-span-1'>
                             <label
@@ -36,7 +54,7 @@ const Appointment = () => {
                                 id='card-number'
                                 placeholder='0000 0000 0000 0000'
                                 className='w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-red-500'
-                                onChange={(e) => setCardNumber(e.target.value)}
+                            // onChange={(e) => setCardNumber(e.target.value)}
                             />
                         </div>
                         {/* <div className='col-span-2 sm:col-span-1'>

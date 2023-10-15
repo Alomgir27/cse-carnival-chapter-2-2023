@@ -28,7 +28,7 @@ export default function SignUp() {
             setLoading(false);
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('user', JSON.stringify(res.data.data));
-            router.asPath === '/signIn' ? router.push('/') : router.reload();
+            router.push('/');
         } catch (err) {
             console.log(err);
             setLoading(false);

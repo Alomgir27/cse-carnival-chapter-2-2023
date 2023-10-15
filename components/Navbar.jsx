@@ -83,11 +83,12 @@ const Navbar = ({ active = -1 }) => {
 						</li>
 					)}
 
-					{/* <li className={` text-dark-gray ${styles.navLink}`}>
-						<Link href="/">History</Link>
-					</li> */}
+
 					<li className={` text-dark-gray ${styles.navLink}`}>
 						<Link href="/symptom">Syndrome Inquery </Link>
+					</li>
+					<li className={` text-dark-gray ${styles.navLink}`}>
+						<Link href="/blogs">Blog & Health Tips</Link>
 					</li>
 					{token ? (
 						<li className={` text-dark-gray ${styles.navLink}`}>

@@ -7,7 +7,7 @@ const data = {
       title: "Search Doctor",
       description:
         "Choose your doctor from thousands of specialist, general, and trusted hospitals",
-      url: "findDoctor",
+      url: "finddoctor",
     },
     {
       id: 2,

@@ -63,7 +63,7 @@ const Navbar = ({ active = -1 }) => {
 						className={`${active === 2 ? styles.activeNavLink : " "
 							} text-dark-gray ${styles.navLink}`}
 					>
-						<Link href='/findDoctor'>Find a doctor</Link>
+						<Link href='/finddoctor'>Find a doctor</Link>
 					</li>
 
 					{/* <li className={` text-dark-gray ${styles.navLink}`}>

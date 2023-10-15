@@ -15,12 +15,7 @@
     "@mui/material": "^5.14.13",
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.5.1",
-<<<<<<< HEAD
-    "babel-loader": "^9.1.3",
-    "body-parser": "^1.20.2",
-=======
     "datepicker": "^0.0.0",
->>>>>>> 940996a63f92edd4175b9c011faf73d965b7b5ad
     "embla-carousel": "^8.0.0-rc14",
     "fs": "^0.0.1-security",
     "moment": "^2.29.4",

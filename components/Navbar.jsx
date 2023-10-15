@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import images from "../constants/images";
@@ -8,6 +8,10 @@ import { HamburgerButton } from "react-hamburger-button";
 
 const Navbar = ({ active = -1 }) => {
   const [hidden, setHindden] = React.useState(true);
+  const [token, setToken] = useState(null);
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+  } , []);
   return (
     <nav className='border-b-2'>
       <div className={` margin-on-side row ${styles.navContainer}`}>
@@ -18,9 +22,8 @@ const Navbar = ({ active = -1 }) => {
 
         {/* nav-links */}
         <ul
-          className={`row ${styles.navLinks} ${
-            hidden ? styles.hide : styles.show
-          }`}
+          className={`row ${styles.navLinks} ${hidden ? styles.hide : styles.show
+            }`}
           onClick={() => {
             setHindden((current) => !current);
           }}
@@ -42,9 +45,8 @@ const Navbar = ({ active = -1 }) => {
             />
           </div>
           <li
-            className={` ${
-              active === 0 ? styles.activeNavLink : " "
-            } text-dark-gray ${styles.navLink}`}
+            className={` ${active === 0 ? styles.activeNavLink : " "
+              } text-dark-gray ${styles.navLink}`}
             onClick={(e) => {
               e.stopPropagation();
             }}
@@ -52,16 +54,14 @@ const Navbar = ({ active = -1 }) => {
             <Link href='/'>Home</Link>
           </li>
           <li
-            className={`${
-              active === 1 ? styles.activeNavLink : " "
-            } text-dark-gray ${styles.navLink}`}
+            className={`${active === 1 ? styles.activeNavLink : " "
+              } text-dark-gray ${styles.navLink}`}
           >
             <Link href='/consultant'>Contact Consultant</Link>
           </li>
           <li
-            className={`${
-              active === 2 ? styles.activeNavLink : " "
-            } text-dark-gray ${styles.navLink}`}
+            className={`${active === 2 ? styles.activeNavLink : " "
+              } text-dark-gray ${styles.navLink}`}
           >
             <Link href='/findDoctor'>Find a doctor</Link>
           </li>
@@ -70,24 +70,24 @@ const Navbar = ({ active = -1 }) => {
 						<Link href="/">History</Link>
 					</li> */}
           <li className={` text-dark-gray ${styles.navLink}`}>
-						<Link href="/"> About Us</Link>
-					</li>
-					{token ? (
-						<li className={` text-dark-gray ${styles.navLink}`}>
-							<button
-								onClick={() => {
-									localStorage.removeItem("token");
-									window.location.reload();
-								}}
-							>
-								Logout
-							</button>
-						</li>
-					) : (
-						<li className={` text-dark-gray ${styles.navLink}`}>
-							<Link href="/signIn">Login</Link>
-						</li>
-					)}
+            <Link href="/"> About Us</Link>
+          </li>
+          {token ? (
+            <li className={` text-dark-gray ${styles.navLink}`}>
+              <button
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  window.location.reload();
+                }}
+              >
+                Logout
+              </button>
+            </li>
+          ) : (
+            <li className={` text-dark-gray ${styles.navLink}`}>
+              <Link href="/signIn">Login</Link>
+            </li>
+          )}
         </ul>
         <div className={`${styles.navMenuButton}`}>
           <HamburgerButton

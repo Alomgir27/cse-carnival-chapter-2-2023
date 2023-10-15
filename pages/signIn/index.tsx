@@ -8,40 +8,12 @@ import Navbar from '../../components/Navbar';
 
 export default function SignUp() {
     const router = useRouter();
-    const [formData, setFormData] = useState({
-        username: '',
-        password: '',
-        name: '',
-        imageUri: '',
-        contact: {
-            address: [],
-            phoneNumber: '',
-        },
-        email: '',
-        biometricData: {
-            fingerprint: '',
-            faceRecognition: '',
-        },
-        profile: {
-            doctor: {
-                specializations: [],
-                certifications: '',
-                availability: {
-                    day: [], // 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
-                    time: {
-                        start: '', // '9:00 AM'
-                        end: '', // '5:00 PM'
-                    }
-                },
-            },
-        },
-        role: 'patient',
-        subscription: 'free',
-    });
-    const [loading, setLoading] = useState(false);
 
-    const [image, setImage] = useState(null);
-    const [certificate, setCertificate] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+    });
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -50,101 +22,18 @@ export default function SignUp() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        const fileForm = new FormData();
-        fileForm.append('file', image);
-        let imageUri = '';
-        let certificateUri = '';
-
         try {
-            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/upload`, fileForm)
-                .then(async (res) => {
-                    imageUri = res.data.data;
-                    console.log(imageUri);
-                    if (certificate) {
-                        const certificateForm = new FormData();
-                        certificateForm.append('file', certificate);
-                        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/upload`, certificateForm)
-                            .then(async (res) => {
-                                certificateUri = res.data.data;
-                                console.log(certificateUri);
-                                let obj = {
-                                    imageUri,
-                                    username: formData.username,
-                                    password: formData.password,
-                                    name: formData.name,
-                                    email: formData.email,
-                                    role: formData.role,
-                                    profile: {
-                                        ...formData.profile,
-                                        doctor: {
-                                            ...formData.profile.doctor,
-                                            certifications: certificateUri,
-                                        }
-                                    }
-
-                                };
-                                console.log(obj);
-
-                                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/create`, {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    body: JSON.stringify(obj),
-                                });
-
-                                console.log(response);
-
-                                const data = await response.json();
-                                console.log(data);
-                                localStorage.setItem('token', data.token);
-                                router.push('/');
-
-                            })
-                            .catch((err) => {
-                                console.log(err);
-                            })
-
-                    } else {
-                        let obj = {
-                            imageUri,
-                            username: formData.username,
-                            password: formData.password,
-                            name: formData.name,
-                            email: formData.email,
-                            role: formData.role,
-                            profile: {
-                                ...formData.profile,
-                            }
-                        };
-                        console.log(obj);
-
-                        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/create`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(obj),
-                        });
-
-                        console.log(response);
-
-                        const data = await response.json();
-                        console.log(data);
-                        localStorage.setItem('token', data.token);
-                        router.push('/');
-
-                    }
-                })
-                .catch((err) => {
-                    console.log(err);
-                })
-        }
-        catch (err) {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, formData);
+            console.log(res.data);
+            setLoading(false);
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('user', JSON.stringify(res.data.data));
+            router.push('/');
+        } catch (err) {
             console.log(err);
+            setLoading(false);
         }
-        setLoading(false);
-    }
+    };
 
 
 
@@ -153,118 +42,6 @@ export default function SignUp() {
 
 
 
-    useEffect(() => {
-        //day any value have even time then remove thoes day
-        ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(day => {
-            let freq = 0;
-            formData.profile.doctor.availability.day.map(d => {
-                if (d === day) freq++;
-            });
-            if (freq % 2 === 0) {
-                formData.profile.doctor.availability.day = formData.profile.doctor.availability.day.filter(d => d !== day);
-            }
-        });
-    }, [formData.profile.doctor.availability.day]);
-
-    const renderUserTypeFields = useCallback(() => {
-
-        return (
-            <div className="space-y-2 mt-2">
-
-                {formData.role === 'doctor' && (
-                    <input
-                        type="text"
-                        name="specializations"
-                        id="specializations"
-                        className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400"
-                        placeholder="Add Specializations (comma separated)"
-                        onChange={(e) => setFormData({ ...formData, profile: { ...formData.profile, doctor: { ...formData.profile.doctor, specializations: e.target.value.split(',') } } })}
-                    />
-                )}
-                {formData.role === 'doctor' && (
-                    <p className="text-gray-600 mb-2 block">
-                        Add  Certifications
-                    </p>
-                )
-                }
-                {formData.role === 'doctor' && (
-
-                    <input
-                        type="file"
-                        name="certifications"
-                        id="certifications"
-                        className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400"
-                        placeholder="Certifications"
-                        onChange={(e) => setCertificate(e.target.files[0])}
-                    />
-                )}
-                {formData.role === 'doctor' && (
-                    console.log(formData.profile.doctor.availability),
-                    ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(day => (
-                        <div key={day} className="flex items-center gap-2">
-                            <input
-                                type="checkbox"
-                                id={day}
-                                className="border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400"
-                                onChange={(e) => setFormData({ ...formData, profile: { ...formData.profile, doctor: { ...formData.profile.doctor, availability: { ...formData.profile.doctor.availability, day: [...formData.profile.doctor.availability.day, day] } } } })}
-                                multiple
-
-                            />
-                            <label htmlFor={day} className="text-gray-600 mb-2 block">
-                                {day}
-                            </label>
-                        </div>
-                    ))
-                )}
-                {formData.role === 'doctor' && (
-                    <div className="flex items-center gap-2">
-                        <DatePicker
-                            selected={formData.profile.doctor.availability.time.start}
-                            onChange={(date) => setFormData({ ...formData, profile: { ...formData.profile, doctor: { ...formData.profile.doctor, availability: { ...formData.profile.doctor.availability, time: { ...formData.profile.doctor.availability.time, start: date } } } } })}
-                            showTimeSelect
-                            showTimeSelectOnly
-                            timeIntervals={15}
-                            timeCaption="Time"
-                            dateFormat="h:mm aa"
-                            popperPlacement="bottom"
-                            placeholderText='Start Time'
-                            className='border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400'
-                            required
-                        />
-                        <DatePicker
-                            selected={formData.profile.doctor.availability.time.end}
-                            onChange={(date) => setFormData({ ...formData, profile: { ...formData.profile, doctor: { ...formData.profile.doctor, availability: { ...formData.profile.doctor.availability, time: { ...formData.profile.doctor.availability.time, end: date } } } } })}
-                            showTimeSelect
-                            showTimeSelectOnly
-                            timeIntervals={15}
-                            timeCaption="Time"
-                            dateFormat="h:mm aa"
-                            popperPlacement="bottom"
-                            placeholderText='End Time'
-                            className='border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400'
-                            required
-                        />
-                    </div>
-                )}
-
-                {formData.role === 'doctor' && (
-                    <input
-                        type="text"
-                        name="newPatientFee"
-                        id="newPatientFee"
-                        className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400"
-                        placeholder="New Patient Fee"
-                        onChange={(e) => setFormData({ ...formData, profile: { ...formData.profile, doctor: { ...formData.profile.doctor, newPatientFee: e.target.value } } })}
-                        required
-                    />
-                )}
-
-            </div>
-        );
-
-
-
-    }, [formData.role, formData.profile]);
 
     return (
         <div className="">

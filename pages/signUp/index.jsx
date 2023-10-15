@@ -98,6 +98,7 @@ export default function SignUp() {
                                 const data = await response.json();
                                 console.log(data);
                                 localStorage.setItem('token', data.token);
+                                localStorage.setItem('user', JSON.stringify(data.data));
                                 router.push('/');
 
                             })
@@ -132,6 +133,7 @@ export default function SignUp() {
                         const data = await response.json();
                         console.log(data);
                         localStorage.setItem('token', data.token);
+                        localStorage.setItem('user', JSON.stringify(data.data));
                         router.push('/');
 
                     }
@@ -188,17 +190,17 @@ export default function SignUp() {
                 )}
                 {formData.role === 'doctor' && (
                     <>
-                    <p className="text-gray-600 mb-2 block">
-                        Add  Certifications
-                    </p>
-                    <input
-                        type="file"
-                        name="certifications"
-                        id="certifications"
-                        className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400"
-                        placeholder="Certifications"
-                        onChange={(e) => setCertificate(e.target.files[0])}
-                    />
+                        <p className="text-gray-600 mb-2 block">
+                            Add  Certifications
+                        </p>
+                        <input
+                            type="file"
+                            name="certifications"
+                            id="certifications"
+                            className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400"
+                            placeholder="Certifications"
+                            onChange={(e) => setCertificate(e.target.files[0])}
+                        />
                     </>
                 )}
                 {formData.role === 'doctor' && (

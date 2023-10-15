@@ -166,7 +166,6 @@ const consultant = () => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
 
-
   return (
     <div>
       <Navbar active={1} />

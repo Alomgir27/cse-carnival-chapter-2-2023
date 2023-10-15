@@ -3,6 +3,7 @@ import Image from "next/image";
 import * as styles from "../styles/Hero.module.css";
 import images from "../constants/images";
 import Button from "./Button";
+import Link from "next/link";
 const Hero = () => {
 	return (
 		<section className={`${styles.heroContainer} row margin-on-side`}>
@@ -22,7 +23,9 @@ const Hero = () => {
 
 					{/* Button - custom button */}
 
-					<Button fill='fill' text={"Consult Now"} />
+					<Link href='/consultant'> 
+						<Button fill='fill' text={"Consult Now"} />
+					</Link>
 				</div>
 			</div>
 

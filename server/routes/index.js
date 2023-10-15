@@ -17,7 +17,7 @@ const healthBlogController = require('../controllers/healthBlogController');
 const diseaseController = require('../controllers/diseaseController');
 const subscriptionController = require('../controllers/subscriptionController');
 const notificationController = require('../controllers/notificationController');
-
+const messageController = require('../controllers/messageController');
 // Multer storage
 
 const storage = multer.diskStorage({
@@ -113,6 +113,15 @@ router.get('/notifications/:id', notificationController.getNotification);
 router.post('/notifications', notificationController.createNotification);
 router.put('/notifications/:id', notificationController.updateNotification);
 router.delete('/notifications/:id', notificationController.deleteNotification);
+
+
+//Message routes
+router.get('/messages', messageController.getAllMessages);
+router.get('/messages/:id', messageController.getMessage);
+router.post('/messages', messageController.createMessage);
+router.put('/messages/:id', messageController.updateMessage);
+router.delete('/messages/:id', messageController.deleteMessage);
+
 
 
 module.exports = router;

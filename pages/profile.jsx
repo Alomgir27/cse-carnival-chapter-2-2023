@@ -23,6 +23,7 @@ const profile = () => {
         end: "02:00 PM",
       },
     },
+    isVarified: true,
   };
 
   return (
@@ -58,6 +59,19 @@ const profile = () => {
             className='  p-6 flex flex-col justify-start gap-3'
             style={{ backgroundColor: " rgba(255, 74, 74, 0.5)" }}
           >
+            <h2 className="text-xl">
+              <span className="min-w-[150px] inline-block">Verified</span>:{" "}
+              <span
+                style={{
+                  color: user.isVarified ? "green" : "red",
+                  fontWeight: "bold",
+                }}
+              >
+                {user.isVarified ? "Yes" : "No"}
+              </span>
+            </h2>
+
+
             <h2 className='text-xl'>
               <span className='min-w-[150px] inline-block'> Rating</span>:{" "}
               {user.rating}

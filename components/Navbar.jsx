@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import images from "../constants/images";
@@ -63,7 +63,7 @@ const Navbar = ({ active = -1 }) => {
 						className={`${active === 2 ? styles.activeNavLink : " "
 							} text-dark-gray ${styles.navLink}`}
 					>
-						<Link href='/finddoctor'>Find a doctor</Link>
+						<Link href='/findDoctor'>Find a doctor</Link>
 					</li>
 
 					{/* <li className={` text-dark-gray ${styles.navLink}`}>

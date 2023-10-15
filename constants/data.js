@@ -15,6 +15,7 @@ const data = {
       title: "Consultation",
       description:
         "Free consultation with our trusted doctors and get the best recomendations",
+      url: "consultant",
     },
     {
       id: 3,
@@ -35,6 +36,7 @@ const data = {
       title: "Syndrome Inquiry",
       description:
         "Have questions or concerns about a particular medical syndrome?",
+      url: "symptoms",
     },
     {
       id: 6,

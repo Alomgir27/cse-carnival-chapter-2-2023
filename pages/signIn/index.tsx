@@ -28,10 +28,11 @@ export default function SignUp() {
             setLoading(false);
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('user', JSON.stringify(res.data.data));
-            router.push('/');
+            router.asPath === '/signIn' ? router.push('/') : router.reload();
         } catch (err) {
             console.log(err);
             setLoading(false);
+            alert(err.response.data.message);
         }
     };
 
@@ -99,7 +100,7 @@ export default function SignUp() {
                             </button>
                             <div className="flex gap-2 pt-5 mb-3">
                                 <p className="text-gray-600 text-sm">New to Healthcare</p>
-                                <a className="text-gray-600 text-sm underline" href="/signIn">
+                                <a className="text-gray-600 text-sm underline" href="/signup">
                                     Sign Up here
                                 </a>
                             </div>

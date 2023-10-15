@@ -9,8 +9,12 @@ import { HamburgerButton } from "react-hamburger-button";
 const Navbar = ({ active = -1 }) => {
 	const [hidden, setHindden] = React.useState(true);
 	const [token, setToken] = useState(null);
+	const [user, setUser] = useState(null);
 	useEffect(() => {
 		setToken(localStorage.getItem("token"));
+	}, []);
+	useEffect(() => {
+		setUser(JSON.parse(localStorage.getItem("user")));
 	}, []);
 	return (
 		<nav className='border-b-2'>
@@ -53,18 +57,31 @@ const Navbar = ({ active = -1 }) => {
 					>
 						<Link href='/'>Home</Link>
 					</li>
-					<li
-						className={`${active === 1 ? styles.activeNavLink : " "
-							} text-dark-gray ${styles.navLink}`}
-					>
-						<Link href='/consultant'>Contact Consultant</Link>
-					</li>
-					<li
-						className={`${active === 2 ? styles.activeNavLink : " "
-							} text-dark-gray ${styles.navLink}`}
-					>
-						<Link href='/finddoctor'>Find a doctor</Link>
-					</li>
+					{(user?.role === "patient" || !user) && (
+						<li
+							className={`${active === 1 ? styles.activeNavLink : " "
+								} text-dark-gray ${styles.navLink}`}
+						>
+							<Link href='/consultant'>Contact Consultant</Link>
+						</li>
+					)}
+					{(user?.role === "patient" || !user) && (
+						<li
+							className={`${active === 2 ? styles.activeNavLink : " "
+								} text-dark-gray ${styles.navLink}`}
+						>
+							<Link href='/finddoctor'>Find a doctor</Link>
+						</li>
+					)}
+
+					{user?.role === "doctor" && (
+						<li
+							className={`${active === 3 ? styles.activeNavLink : " "
+								} text-dark-gray ${styles.navLink}`}
+						>
+							<Link href='/doctor'>Doctor Dashboard</Link>
+						</li>
+					)}
 
 					{/* <li className={` text-dark-gray ${styles.navLink}`}>
 						<Link href="/">History</Link>

@@ -70,13 +70,14 @@ const Navbar = ({ active = -1 }) => {
 						<Link href="/">History</Link>
 					</li> */}
 					<li className={` text-dark-gray ${styles.navLink}`}>
-						<Link href="/"> About Us</Link>
+						<Link href="/symptom">Syndrome Inquery </Link>
 					</li>
 					{token ? (
 						<li className={` text-dark-gray ${styles.navLink}`}>
 							<button
 								onClick={() => {
 									localStorage.removeItem("token");
+									localStorage.removeItem("user");
 									window.location.reload();
 								}}
 							>

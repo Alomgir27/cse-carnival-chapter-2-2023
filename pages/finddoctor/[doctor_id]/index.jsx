@@ -96,7 +96,7 @@ export default function DoctorDetails() {
                             </div>
                         </div>
 
-                        <button className='bg-red-500 py-2 px-5 mt-2 font-bold rounded-full text-white'>
+                        <button className='bg-red-500 py-2 px-5 mt-2 font-bold rounded-full text-white' onClick={() => router.push(`/appointment`)}>
                             Request appointment
                         </button>
                     </div>

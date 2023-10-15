@@ -17,6 +17,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 
+
 // routes
 app.use('/api', require('./routes/index'));
 

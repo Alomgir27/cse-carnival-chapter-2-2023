@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import data from "../../constants/data";
@@ -6,7 +6,11 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import DoctorCard from "../../components/DoctorCard";
 
+import axios from "axios";
+
 const symptoms = () => {
+  const [moreData, setMoreData] = useState([]);
+  const [search, setSearch] = useState("");
   const sampleData = [
     {
       name: "Flu",
@@ -33,6 +37,17 @@ const symptoms = () => {
       doctor: ["doctorId1", "doctorId3"],
     },
   ];
+
+  useEffect(() => {
+    (async () => {
+      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/diseases`).then((res) => {
+        setMoreData(res.data.data);
+        console.log(res);
+      });
+    }
+    )();
+  }
+    , []);
 
 
   return (
@@ -69,13 +84,13 @@ const symptoms = () => {
             </div>
           </div> */}
 
-          <div className='grid md:grid-cols-3 sm:grid-cols-1 gap-5 mt-8'>
+          {/* <div className='grid md:grid-cols-3 sm:grid-cols-1 gap-5 mt-8'>
             {sampleData.map((item) => (
               <div className='flex flex-col gap-3 p-3 px-5 bg-red-200 rounded-md' key={item.name}>
                 <div className='text-2xl font-semibold text-gray-700'>
                   {item.name}
-                </div>
-                <div className='flex gap-2'>
+                </div> */}
+          {/* <div className='flex gap-2'>
                   <div className='text-l font-semibold text-gray-700'>
                     Precautions:
                   </div>
@@ -84,8 +99,8 @@ const symptoms = () => {
                       <div key={index}>{precaution}</div>
                     ))}
                   </div>
-                </div>
-                {/* <div className='flex gap-2'>
+                </div> */}
+          {/* <div className='flex gap-2'>
                   <div className='text-l font-semibold text-gray-700'>
                     Doctors:
                   </div>
@@ -95,15 +110,49 @@ const symptoms = () => {
                     ))}
                   </div>
                 </div> */}
-              </div>
+          {/* </div>
             ))}
-          </div>
+          </div> */}
+          {search === "" && (
+            <div className='grid md:grid-cols-3 sm:grid-cols-1 gap-5 mt-8'>
+              {moreData.map((item) => (
+                <div className='flex flex-col gap-3 p-3 px-5 bg-red-200 rounded-md' key={item._id}>
+                  <div className='text-2xl font-semibold text-gray-700'>
+                    {item.name}
+                  </div>
+                  <div className='text-l font-semibold text-gray-700'>
+                    <p className='text-l font-semibold text-gray-700'>
+                      Experts: {item.symptoms[0]}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {search !== "" && (
+            <div className='grid md:grid-cols-3 sm:grid-cols-1 gap-5 mt-8'>
+              {moreData.filter((item) => item.symptoms[0].toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())).map((item) => (
+                <div className='flex flex-col gap-3 p-3 px-5 bg-red-200 rounded-md' key={item._id}>
+                  <div className='text-2xl font-semibold text-gray-700'>
+                    {item.name}
+                  </div>
+                  <div className='text-l font-semibold text-gray-700'>
+                    <p className='text-l font-semibold text-gray-700'>
+                      Experts: {item.symptoms[0]}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
 
 
         </div>
 
       </div>
-    </div>
+    </div >
   );
 };
 

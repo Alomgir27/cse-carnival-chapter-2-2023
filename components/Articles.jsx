@@ -11,7 +11,7 @@ const Articles = ({ articles, blogs }) => {
 				{articles.map((item) => {
 					return <ArticleCard key={item.id} data={item} />;
 				})}
-				{blogs.map((item) => {
+				{blogs?.map((item) => {
 					return <ArticleCard key={item._id} data={item} />;
 
 				})}

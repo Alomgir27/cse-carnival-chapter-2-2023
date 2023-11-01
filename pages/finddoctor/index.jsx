@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
-const findDoctor = () => {
+const FindDoctor = () => {
   const [search, setSearch] = useState("");
   const { users } = useSelector((state) => state.data);
   const [list, setList] = useState([]); // [1,2,3,4,5,6,7,8,9,10
@@ -78,8 +78,8 @@ const findDoctor = () => {
             <div className='flex flex-col gap-2 ml-4'>
               <select className='border border-gray-300 rounded-md px-4 py-2 focus:outline-none' onChange={(e) => setSearch(e.target.value)}>
                 <option value=''>Select Specialization</option>
-                {list.map((item) => (
-                  <option value={item}>{item}</option>
+                {list.map((item, index) => (
+                  <option value={item} key={index}>{item}</option>
                 ))}
               </select>
               <select className='border border-gray-300 rounded-md px-4 py-2 focus:outline-none' onChange={(e) => setSearch(e.target.value)}>
@@ -167,4 +167,4 @@ const findDoctor = () => {
   );
 };
 
-export default findDoctor;
+export default FindDoctor;

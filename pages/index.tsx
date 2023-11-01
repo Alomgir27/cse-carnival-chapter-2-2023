@@ -49,7 +49,6 @@ export default function Home() {
 
                     <Services services={data.services} />
 
-                    <Articles articles={data.articles} />
 
                     <Footer />
                 </div>

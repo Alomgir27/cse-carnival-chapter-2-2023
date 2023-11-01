@@ -72,7 +72,7 @@ export default function DoctorDetails() {
             <Sidebar services={data.services} />
             <div className='w-full flex flex-col items-center justify-center mt-10 mb-10'>
                 <h1 className='text-4xl text-center mb-6 font-bold'>
-                    Doctor's Information
+                    Doctor&apos;s Information
                 </h1>
                 <div className='w-[70%]  grid grid-cols-2 border-2 border-red-500 rounded-2xl overflow-hidden'>
                     <div className='  flex flex-col justify-center items-center border-r-red-500 border-r-2'>
@@ -134,8 +134,8 @@ export default function DoctorDetails() {
                             style={{ backgroundColor: "rgba(255,255,255,0.8)" }}
                             className='rounded-xl p-2 text-center'
                         >
-                            {doctor?.profile?.doctor?.availability?.day?.map((item) => (
-                                <li key={item}>
+                            {doctor?.profile?.doctor?.availability?.day?.map((item, index) => (
+                                <li key={index} className='flex justify-between items-center'>
                                     <span className='min-w-[150px] inline-block'>{item}</span>
                                     <span>
                                         {moment(doctor?.profile?.doctor?.availability?.time?.start).format("hh:mm A")} -{" "}
@@ -149,7 +149,7 @@ export default function DoctorDetails() {
 
                         <h1 className='text-2xl text-center'>Reviews</h1>
                         <div>
-                            {doctor?.profile?.doctor?.reviews?.map((review) => (
+                            {doctor?.profile?.doctor?.reviews?.map((review, index) => (
                                 <ReviewCard
                                     data={{
                                         username: review?.user?.username,
@@ -157,6 +157,7 @@ export default function DoctorDetails() {
                                         rating: review?.rating,
                                         createdAt: review?.createdAt,
                                     }}
+                                    key={index}
                                 />
                             ))}
                             <ReviewCard

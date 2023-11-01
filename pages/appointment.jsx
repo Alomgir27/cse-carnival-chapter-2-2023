@@ -43,7 +43,6 @@ const Appointment = () => {
                     <div className='grid grid-cols-2 gap-6'>
                         <div className='col-span-2 sm:col-span-1'>
                             <label
-                                for='card-number'
                                 className='block text-sm font-medium text-gray-700 mb-2'
                             >
                                 Appointment Fee

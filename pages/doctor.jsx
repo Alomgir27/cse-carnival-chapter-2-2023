@@ -113,7 +113,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import moment from "moment";
-
+import Link from "next/link";
 
 
 const DoctorDashboard = () => {
@@ -193,7 +193,7 @@ const DoctorDashboard = () => {
                         </div>
                     </div>
                     <div className="flex justify-end">
-                        <a href="#" className="text-red-500">Edit Profile</a>
+                        {/* <a href="#" className="text-red-500">Edit Profile</a> */}
                     </div>
                 </div>
 
@@ -236,7 +236,9 @@ const DoctorDashboard = () => {
                             <p className="text-gray-600">10:00 AM</p>
                         </div>
                         <div className="flex justify-end">
-                            <a href="/appointmentlist" className="text-red-500">View All</a>
+                            <Link href="/appointmentlist">
+                                <p className="text-red-500 cursor-pointer">View All</p>
+                            </Link>
                         </div>
 
                     </div>

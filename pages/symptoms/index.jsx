@@ -8,7 +8,7 @@ import DoctorCard from "../../components/DoctorCard";
 
 import axios from "axios";
 
-const symptoms = () => {
+const Symptoms = () => {
   const [moreData, setMoreData] = useState([]);
   const [search, setSearch] = useState("");
   const sampleData = [
@@ -157,4 +157,4 @@ const symptoms = () => {
 };
 
 
-export default symptoms;
+export default Symptoms;

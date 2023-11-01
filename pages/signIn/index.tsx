@@ -1,10 +1,11 @@
+//@ts-nocheck
 import React, { useState, useCallback, useEffect } from 'react';
-import DatePicker from 'react-datepicker';
 import Image from 'next/image';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import 'react-datepicker/dist/react-datepicker.css';
 import Navbar from '../../components/Navbar';
+import Link from 'next/link';
 
 export default function SignUp() {
     const router = useRouter();
@@ -100,9 +101,9 @@ export default function SignUp() {
                             </button>
                             <div className="flex gap-2 pt-5 mb-3">
                                 <p className="text-gray-600 text-sm">New to Healthcare</p>
-                                <a className="text-gray-600 text-sm underline" href="/signup">
+                                <Link href="/signUp">
                                     Sign Up here
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </form>

@@ -61,7 +61,7 @@ const OtherMessage = ({ message, createdAt }) => {
 //   },
 // }, { timestamps: true });
 
-const consultant = () => {
+const Consultant = () => {
   const [message, setMessage] = useState("")
   const scrollRef = useRef();
   const router = useRouter();
@@ -190,7 +190,7 @@ const consultant = () => {
               {messages?.messages?.length === 0 && (
                 <div className='flex items-center justify-center'>
                   <h1 className='text-2xl font-semibold text-gray-700'>
-                    What's kind of help do you need? Ask us anything.
+                    What&apos;s on your mind?
                   </h1>
                 </div>
               )}
@@ -259,4 +259,4 @@ const consultant = () => {
   );
 };
 
-export default consultant;
+export default Consultant;

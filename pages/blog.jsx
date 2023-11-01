@@ -24,7 +24,7 @@ const dummyBlogData = {
   reviews: [1, 2, 3, 4, 5],
 };
 
-const blog = () => {
+const Blog = () => {
   const { user, title, content, tags, likes, dislikes, reviews } =
     dummyBlogData;
 
@@ -55,4 +55,4 @@ const blog = () => {
   );
 };
 
-export default blog;
+export default Blog;

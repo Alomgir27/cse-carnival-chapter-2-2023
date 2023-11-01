@@ -8,7 +8,7 @@ import data from "../constants/data";
 import Image from "next/image";
 import ReviewCard from "../components/ReviewCard";
 
-const profile = () => {
+const Profile = () => {
   const user = {
     name: "Nisha",
     username: "nisha",
@@ -32,7 +32,7 @@ const profile = () => {
       <Sidebar services={data.services} />
       <div className='w-full flex flex-col items-center justify-center mt-10 mb-10'>
         <h1 className='text-4xl text-center mb-6 font-bold'>
-          Doctor's Information
+          Doctor&apos;s Information
         </h1>
         <div className='w-[70%]  grid grid-cols-2 border-2 border-red-500 rounded-2xl overflow-hidden'>
           <div className='  flex flex-col justify-center items-center border-r-red-500 border-r-2'>
@@ -143,4 +143,4 @@ const profile = () => {
   );
 };
 
-export default profile;
+export default Profile;
